@@ -16,13 +16,13 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
+public class CoursesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_courses);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity
 
         changeToolbarTitle();
 
-        // Add icon to toolbar, only works if you don't use the custom text above.
-        //getSupportActionBar().setLogo(R.drawable.ic_launcher_round);
-        //getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
     @Override
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.courses, menu);
         return true;
     }
 
@@ -76,13 +73,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         switch(item.getItemId()) {
             case R.id.nav_home:
-                onBackPressed();
+                Intent intentForMain = new Intent(this, MainActivity.class);
+                //intentForMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intentForMain);
                 break;
             case R.id.nav_courses:
-                Intent intentForMain = new Intent(this, CoursesActivity.class);
-                startActivity(intentForMain);
+                onBackPressed();
                 break;
             case R.id.nav_review:
                 Intent intentForReview = new Intent(this, ReviewActivity.class);
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
         tv.setLayoutParams(lp);
-        tv.setText(R.string.app_name);
+        tv.setText(R.string.course_activity_title);
         tv.setTextSize(20);
         tv.setTextColor(color);
         tv.setTypeface(tf);

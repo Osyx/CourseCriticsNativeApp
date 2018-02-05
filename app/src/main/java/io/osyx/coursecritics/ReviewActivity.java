@@ -13,16 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
+public class ReviewActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_review);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -35,11 +37,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        changeToolbarTitle();
+        Spinner spinner = findViewById(R.id.course_period_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.course_period_spinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
-        // Add icon to toolbar, only works if you don't use the custom text above.
-        //getSupportActionBar().setLogo(R.drawable.ic_launcher_round);
-        //getSupportActionBar().setDisplayUseLogoEnabled(true);
+        changeToolbarTitle();
     }
 
     @Override
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.review, menu);
         return true;
     }
 
@@ -78,15 +82,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.nav_home:
-                onBackPressed();
-                break;
-            case R.id.nav_courses:
-                Intent intentForMain = new Intent(this, CoursesActivity.class);
+                Intent intentForMain = new Intent(this, MainActivity.class);
+                //intentForMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentForMain);
                 break;
+            case R.id.nav_courses:
+                Intent intentForCourses = new Intent(this, CoursesActivity.class);
+                startActivity(intentForCourses);
+                break;
             case R.id.nav_review:
-                Intent intentForReview = new Intent(this, ReviewActivity.class);
-                startActivity(intentForReview);
+                onBackPressed();
                 break;
             case R.id.nav_login:
                 break;
@@ -94,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return false;
+        return true;
     }
 
     private void changeToolbarTitle() {
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
         tv.setLayoutParams(lp);
-        tv.setText(R.string.app_name);
+        tv.setText(R.string.review_activity_title);
         tv.setTextSize(20);
         tv.setTextColor(color);
         tv.setTypeface(tf);

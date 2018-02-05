@@ -9,7 +9,6 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
@@ -17,7 +16,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/pacifico"
-        android:text="@string/main_title"
+        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="68sp" />
@@ -37,7 +36,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:background="@drawable/search_box"
+            android:background="@drawable/input_box_button_ready"
             android:ems="10"
             android:fontFamily="@font/acme"
             android:hint="@string/search_box_text"
@@ -48,7 +47,6 @@
             android:textSize="14sp" />
 
         <ImageButton
-            android:id="@+id/button"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
