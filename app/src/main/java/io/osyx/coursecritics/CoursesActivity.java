@@ -1,6 +1,7 @@
 package io.osyx.coursecritics;
 
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CoursesActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginDialog.DialogListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,12 +130,49 @@ public class CoursesActivity extends AppCompatActivity
                 startActivity(intentForReview);
                 break;
             case R.id.nav_login:
+                DialogFragment dialogFragment = new LoginDialog();
+                dialogFragment.show(getFragmentManager(), "loginDialog");
+                break;
+            case R.id.nav_logout:
+                logout();
                 break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    private void login(String username) {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem nav_login = menu.findItem(R.id.nav_login);
+        nav_login.setTitle(username);
+        MenuItem menuLogout = menu.findItem(R.id.nav_logout);
+        menuLogout.setTitle("Logout");
+        menuLogout.setIcon(R.drawable.ic_logout);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void logout() {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem nav_login = menu.findItem(R.id.nav_login);
+        nav_login.setTitle("Login");
+        MenuItem menuLogout = menu.findItem(R.id.nav_logout);
+        menuLogout.setTitle("");
+        menuLogout.setIcon(R.drawable.trans);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onDialogPositiveClick(String username, String password) {
+        login(username);
+    }
+
+    @Override
+    public void onDialogNegativeClick() {
+
     }
 
     private void changeToolbarTitle() {
