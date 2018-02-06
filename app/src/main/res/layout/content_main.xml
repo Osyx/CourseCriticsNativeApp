@@ -19,7 +19,7 @@
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="68sp" />
+        android:textSize="56sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -31,7 +31,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/main_search_bar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
@@ -51,10 +51,11 @@
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search_black"
             android:background="@drawable/search_button"
-            app:layout_constraintStart_toEndOf="@+id/editText"
-            android:contentDescription="@string/search_button_desc" />
+            android:contentDescription="@string/search_button_desc"
+            android:onClick="search"
+            android:src="@drawable/ic_search_black"
+            app:layout_constraintStart_toEndOf="@+id/main_search_bar" />
     </LinearLayout>
 
 </RelativeLayout>

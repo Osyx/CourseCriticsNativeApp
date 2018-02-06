@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -100,6 +101,12 @@ public class ReviewActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void submitReview(View view) {
+        Intent intentForCourses = new Intent(this, CoursesActivity.class);
+        intentForCourses.putExtra("TOAST", true);
+        startActivity(intentForCourses);
     }
 
     private void changeToolbarTitle() {

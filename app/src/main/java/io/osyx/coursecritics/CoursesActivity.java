@@ -13,8 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CoursesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +38,12 @@ public class CoursesActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         changeToolbarTitle();
+
+        EditText searchBar = findViewById(R.id.courses_search_bar);
+        searchBar.setText(getIntent().getStringExtra("SEARCH"));
+
+        if(getIntent().getBooleanExtra("TOAST", false))
+            Toast.makeText(getApplicationContext(), "Review submitted!", Toast.LENGTH_SHORT).show();
 
     }
 

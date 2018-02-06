@@ -11,6 +11,11 @@
     <string name="course_activity_title">Courses</string>
     <string name="title_activity_review">ReviewActivity</string>
     <string name="review_activity_title">Review</string>
+    <string name="dialog_ok">Login</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login_dialog_title">Login</string>
 
     <string-array name="course_period_spinner">
         <item>HT17</item>

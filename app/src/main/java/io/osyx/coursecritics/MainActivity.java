@@ -1,6 +1,7 @@
 package io.osyx.coursecritics;
 
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,14 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+        implements NavigationView.OnNavigationItemSelectedListener, LoginDialog.DialogListener {
+    String logoutId = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +93,25 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intentForReview);
                 break;
             case R.id.nav_login:
+                DialogFragment dialogFragment = new LoginDialog();
+                dialogFragment.show(getFragmentManager(), "loginDialog");
+                break;
+            case R.id.nav_logout:
+                logout();
                 break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    public void search(View view) {
+        EditText search = findViewById(R.id.main_search_bar);
+        String searchText = search.getText().toString();
+        Intent intentForCourses = new Intent(this, CoursesActivity.class);
+        intentForCourses.putExtra("SEARCH", searchText);
+        startActivity(intentForCourses);
     }
 
     private void changeToolbarTitle() {
@@ -110,5 +127,37 @@ public class MainActivity extends AppCompatActivity
         tv.setTypeface(tf);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(tv);
+    }
+
+    private void login(String username) {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem nav_login = menu.findItem(R.id.nav_login);
+        nav_login.setTitle(username);
+        MenuItem menuLogout = menu.findItem(R.id.nav_logout);
+        menuLogout.setTitle("Logout");
+        menuLogout.setIcon(R.drawable.ic_logout);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void logout() {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem nav_login = menu.findItem(R.id.nav_login);
+        nav_login.setTitle("Login");
+        MenuItem menuLogout = menu.findItem(R.id.nav_logout);
+        menuLogout.setTitle("");
+        menuLogout.setIcon(R.drawable.trans);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onDialogPositiveClick(String username, String password) {
+        login(username);
+    }
+
+    @Override
+    public void onDialogNegativeClick() {
+
     }
 }
