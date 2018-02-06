@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,37 @@ public class CoursesActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+
+    public void onClickingCourse(View view) {
+        ImageView course = (ImageView) findViewById(R.id.course1exp);
+        if(course.getVisibility() == View.GONE) {
+            course.setVisibility(View.VISIBLE);
+        }
+        else {
+            course.setVisibility(View.GONE);
+        }
+    }
+
+    public void onClickingCourse2(View view) {
+        ImageView course = (ImageView) findViewById(R.id.course2exp);
+        if(course.getVisibility() == View.GONE) {
+            course.setVisibility(View.VISIBLE);
+        }
+        else {
+            course.setVisibility(View.GONE);
+        }
+    }
+
+    public void onClickingCourse3(View view) {
+        ImageView course = (ImageView) findViewById(R.id.course3exp);
+        if(course.getVisibility() == View.GONE) {
+            course.setVisibility(View.VISIBLE);
+        }
+        else {
+            course.setVisibility(View.GONE);
         }
     }
 

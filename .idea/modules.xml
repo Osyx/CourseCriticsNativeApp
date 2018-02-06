@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CourseCriticsNativeApp.iml" filepath="$PROJECT_DIR$/CourseCriticsNativeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\enfet\Documents\GitHub\CourseCriticsNativeApp\app\app.iml" filepath="C:\Users\enfet\Documents\GitHub\CourseCriticsNativeApp\app\app.iml" />
     </modules>
   </component>
 </project>
