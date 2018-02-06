@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity
 
         changeToolbarTitle();
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_review);
+
         // Add icon to toolbar, only works if you don't use the custom text above.
         //getSupportActionBar().setLogo(R.drawable.ic_launcher_round);
         //getSupportActionBar().setDisplayUseLogoEnabled(true);
